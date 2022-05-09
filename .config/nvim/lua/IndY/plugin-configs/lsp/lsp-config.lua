@@ -56,7 +56,7 @@ local opts = {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
-local opts_copy = opts
+local opts_copy = vim.deepcopy(opts)
 
 local servers = {
 	"sumneko_lua",
@@ -130,8 +130,8 @@ end
 -- 	border = "rounded",
 -- })
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-	opts = opts or {}
-	opts.border = opts.border or "rounded"
-	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+function vim.lsp.util.open_floating_preview(contents, syntax, options, ...)
+	options = options or {}
+	options.border = options.border or "rounded"
+	return orig_util_open_floating_preview(contents, syntax, options, ...)
 end

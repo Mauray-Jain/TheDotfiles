@@ -24,4 +24,6 @@ function M.create_term(cmd)
 	end
 end
 
+-- TODO: Create a telescope / fzf-lua picker for running files
+
 return M

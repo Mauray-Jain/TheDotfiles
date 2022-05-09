@@ -46,7 +46,7 @@ vim.keymap.set("n", "<Leader>fd", function ()
 	-- Search Dotfiles with Telescope in any directory
 	require("telescope.builtin").find_files({
 		prompt_title = "< VimRC >",
-		cwd = "~/repo/TheDotfiles/nvim",
+		cwd = "~/.config/nvim",
 	})
 end)
 -- Navigate through buffers [<Leader>b - buffers]

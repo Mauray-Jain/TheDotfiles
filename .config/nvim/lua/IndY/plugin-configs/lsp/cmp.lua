@@ -111,3 +111,10 @@ cmp.setup {
 		native_menu = false, -- This disables the old menu and uses kind-of new menu
 	},
 }
+
+cmp.setup.filetype('norg', {
+	sources = {
+		{ name = 'neorg' },
+    { name = 'luasnip' },
+	},
+})
