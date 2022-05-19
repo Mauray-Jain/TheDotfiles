@@ -1,6 +1,6 @@
-local M = {}
-
-function M.create_term(cmd)
+---Creates a terminal for given command and executes it
+---@param cmd string
+local function create_term(cmd)
 	-- Check if toggleterm is there
 	if packer_plugins["toggleterm.nvim"] then
 		if packer_plugins["toggleterm.nvim"].loaded == false then
@@ -16,7 +16,10 @@ function M.create_term(cmd)
 				vim.cmd [[startinsert!]]
 			end
 		})
-		repl:toggle(get("size"), get("direction"))
+		local size_func = get("size")
+		local direction = get("direction")
+		local size = size_func({direction = direction})
+		repl:toggle(size, direction)
 	else
 		vim.notify("toggleterm.nvim not installed, using default terminal", vim.log.levels.WARN)
 		vim.cmd([[split term://]]..cmd)
@@ -24,6 +27,21 @@ function M.create_term(cmd)
 	end
 end
 
--- TODO: Create a telescope / fzf-lua picker for running files
+---Modify cmds replacing the $vars with required things
+---@param cmd string
+---@param path string
+---@return string
+local function modify_cmd(cmd, path)
+	local normal_cmd = cmd
+	cmd = cmd:gsub("$file", vim.fn.fnamemodify(path, ":p"))
+	cmd = cmd:gsub("$dir", vim.fn.fnamemodify(path, ":p:h"))
+	cmd = cmd:gsub("$fileName", vim.fn.fnamemodify(path, ":t"))
+	cmd = cmd:gsub("$fileNameWithoutExt", vim.fn.fnamemodify(path, ":t:r"))
+	if normal_cmd == cmd then
+		cmd = cmd .. " " .. path
+	end
+	return cmd
+end
 
-return M
+local function projects()
+end

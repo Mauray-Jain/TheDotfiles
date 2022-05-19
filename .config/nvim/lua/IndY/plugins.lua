@@ -90,6 +90,7 @@ return packer.startup({
 		use { -- Fuzzy Finder 2
 			'ibhagwan/fzf-lua',
 			requires = 'kyazdani42/nvim-web-devicons',
+			config = [[require("IndY.plugin-configs.fzf-lua")]]
 		}
 		use { -- Shows the open buffers in a bufferline
 			'akinsho/bufferline.nvim',
@@ -102,13 +103,13 @@ return packer.startup({
 			cmd = {"lua _Node_Toggle()", "lua _Deno_Toggle()"},
 			config = [[require("IndY.plugin-configs.toggleterm")]]
 		}
-		use { -- For Web Development
-			{ -- Displaying colours
-				'RRethy/vim-hexokinase',
-				run = "make hexokinase",
-				cmd = {"HexokinaseTurnOn", "HexokinaseToggle"},
-				config = [[require("IndY.plugin-configs.vim-hexokinase")]]
-			},
+		-- use { -- For Web Development
+			-- { -- Displaying colours
+			-- 	'RRethy/vim-hexokinase',
+			-- 	run = "make hexokinase",
+			-- 	cmd = {"HexokinaseTurnOn", "HexokinaseToggle"},
+			-- 	config = [[require("IndY.plugin-configs.vim-hexokinase")]]
+			-- },
 			-- { -- API testing
 			-- 	'NTBBloodbath/rest.nvim',
 			-- 	ft = {"http"},
@@ -120,12 +121,12 @@ return packer.startup({
 			-- 	cmd = "Bracey",
 			-- 	config = [[require("IndY.plugin-configs.bracey")]]
 			-- },
-			{ -- Emmet for vim bcoz the emmet lsp doesn't have support for some things
-				'mattn/emmet-vim',
-				ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
-				config = [[require("IndY.plugin-configs.emmet")]]
-			}
-		}
+			-- { -- Emmet for vim bcoz the emmet lsp doesn't have support for some things
+			-- 	'mattn/emmet-vim',
+			-- 	ft = {"html", "css", "javascript", "typescript", "vue", "javascriptreact", "typescriptreact"},
+			-- 	config = [[require("IndY.plugin-configs.emmet")]]
+			-- },
+		-- }
 		use { -- Colour Scheme
 			'rebelot/kanagawa.nvim',
 			config = [[require("IndY.plugin-configs.kanagawa")]]

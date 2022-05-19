@@ -48,6 +48,11 @@ vim.keymap.set("n", "<Leader>fd", function ()
 		prompt_title = "< VimRC >",
 		cwd = "~/.config/nvim",
 	})
+	-- or with Fzf-lua
+	-- require('fzf-lua').files({
+	-- 	prompt = "<VimRC> ❯",
+	-- 	cwd = '~/.config/nvim',
+	-- })
 end)
 -- Navigate through buffers [<Leader>b - buffers]
 vim.keymap.set("n", "<Leader>bn", "<Cmd>BufferLineCycleNext<CR>")
