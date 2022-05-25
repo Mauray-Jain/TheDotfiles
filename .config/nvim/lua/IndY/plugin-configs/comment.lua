@@ -1,4 +1,8 @@
--- Nvim Comment Setup
+-- Keybindings
+-- C-/ to toggle comment in insert mode
+vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_current_linewise)gi")
+
+-- Setup
 require('Comment').setup{
 	opleader = { -- LHS of Operator pending mode
 		line = "gc",

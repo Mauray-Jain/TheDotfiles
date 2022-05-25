@@ -1,3 +1,4 @@
+-- Setup
 require'fzf-lua'.setup {
   winopts = {
     preview = {

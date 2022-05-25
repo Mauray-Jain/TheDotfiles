@@ -25,6 +25,8 @@ end
 local function lsp_autocommands(client)
 	-- Set autocommands conditional on server_capabilities
 	if client.resolved_capabilities.document_highlight then
+-- For next version (0.8) above line will generate warning, use below instead:
+	-- if client.server_capabilities.documentHighlightProvider then
 		local lspGroup = vim.api.nvim_create_augroup("LspAutocmds", {clear = true})
 		vim.api.nvim_create_autocmd("CursorHold", {
 			group = lspGroup,
@@ -66,6 +68,7 @@ local servers = {
 	-- "denols",
 	-- "html",
 	-- "tailwindcss",
+	-- "hls",
 }
 
 for _, server in pairs(servers) do

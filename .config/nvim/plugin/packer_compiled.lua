@@ -81,15 +81,20 @@ _G.packer_plugins = {
     url = "https://github.com/antoinemadec/FixCursorHold.nvim"
   },
   LuaSnip = {
+    after = { "friendly-snippets" },
     config = { 'require("IndY.plugin-configs.lsp.luasnip")' },
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ["bufferline.nvim"] = {
     config = { 'require("IndY.plugin-configs.bufferline")' },
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/bufferline.nvim",
     url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-nvim-lsp"] = {
@@ -111,14 +116,21 @@ _G.packer_plugins = {
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["friendly-snippets"] = {
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    load_after = {
+      LuaSnip = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
   ["fzf-lua"] = {
+    commands = { "FzfLua" },
     config = { 'require("IndY.plugin-configs.fzf-lua")' },
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/fzf-lua",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/fzf-lua",
     url = "https://github.com/ibhagwan/fzf-lua"
   },
   ["gitsigns.nvim"] = {
@@ -129,8 +141,10 @@ _G.packer_plugins = {
   },
   ["indent-blankline.nvim"] = {
     config = { 'require("IndY.plugin-configs.indent_blankline")' },
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["kanagawa.nvim"] = {
@@ -141,7 +155,9 @@ _G.packer_plugins = {
   },
   neorg = {
     config = { 'require("IndY.plugin-configs.neorg")' },
-    load_after = {},
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
     loaded = false,
     needs_bufread = true,
     only_cond = false,
@@ -150,15 +166,17 @@ _G.packer_plugins = {
   },
   ["nvim-autopairs"] = {
     config = { 'require("IndY.plugin-configs.nvim-autopairs")' },
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    load_after = {},
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    config = { 'require("IndY.plugin-configs.lsp.cmp")' },
+    after = { "nvim-autopairs" },
     loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/nvim-cmp",
-    url = "https://github.com/hrsh7th/nvim-cmp"
+    only_config = true
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -166,24 +184,39 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
+    commands = { "NvimTreeToggle", "NvimTreeClose" },
     config = { 'require("IndY.plugin-configs.nvim-tree")' },
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/nvim-tree.lua",
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    after = { "neorg" },
-    loaded = true,
-    only_config = true
+    after = { "neorg", "nvim-treesitter-textobjects", "nvim-ts-context-commentstring" },
+    config = { 'require("IndY.plugin-configs.treesitter")' },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects",
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["nvim-ts-context-commentstring"] = {
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/nvim-ts-context-commentstring",
+    load_after = {
+      ["nvim-treesitter"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/mauray/.local/share/nvim/site/pack/packer/opt/nvim-ts-context-commentstring",
     url = "https://github.com/JoosepAlviste/nvim-ts-context-commentstring"
   },
   ["nvim-web-devicons"] = {
@@ -201,11 +234,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mauray/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
-  },
-  ["telescope.nvim"] = {
-    loaded = true,
-    path = "/home/mauray/.local/share/nvim/site/pack/packer/start/telescope.nvim",
-    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
     commands = { "lua _Node_Toggle()", "lua _Deno_Toggle()" },
@@ -225,10 +253,39 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: indent-blankline.nvim
-time([[Config for indent-blankline.nvim]], true)
-require("IndY.plugin-configs.indent_blankline")
-time([[Config for indent-blankline.nvim]], false)
+local module_lazy_loads = {
+  ["^fzf%-lua"] = "fzf-lua",
+  ["^luasnip"] = "LuaSnip"
+}
+local lazy_load_called = {['packer.load'] = true}
+local function lazy_load_module(module_name)
+  local to_load = {}
+  if lazy_load_called[module_name] then return nil end
+  lazy_load_called[module_name] = true
+  for module_pat, plugin_name in pairs(module_lazy_loads) do
+    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
+      to_load[#to_load + 1] = plugin_name
+    end
+  end
+
+  if #to_load > 0 then
+    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
+    local loaded_mod = package.loaded[module_name]
+    if loaded_mod then
+      return function(modname) return loaded_mod end
+    end
+  end
+end
+
+if not vim.g.packer_custom_loader_enabled then
+  table.insert(package.loaders, 1, lazy_load_module)
+  vim.g.packer_custom_loader_enabled = true
+end
+
+-- Config for: nvim-web-devicons
+time([[Config for nvim-web-devicons]], true)
+require("IndY.plugin-configs.nvim-web-devicons")
+time([[Config for nvim-web-devicons]], false)
 -- Config for: kanagawa.nvim
 time([[Config for kanagawa.nvim]], true)
 require("IndY.plugin-configs.kanagawa")
@@ -237,47 +294,22 @@ time([[Config for kanagawa.nvim]], false)
 time([[Config for Comment.nvim]], true)
 require("IndY.plugin-configs.comment")
 time([[Config for Comment.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-require("IndY.plugin-configs.treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require("IndY.plugin-configs.lsp.luasnip")
-time([[Config for LuaSnip]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require("IndY.plugin-configs.nvim-tree")
-time([[Config for nvim-tree.lua]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require("IndY.plugin-configs.lsp.cmp")
 time([[Config for nvim-cmp]], false)
--- Config for: bufferline.nvim
-time([[Config for bufferline.nvim]], true)
-require("IndY.plugin-configs.bufferline")
-time([[Config for bufferline.nvim]], false)
--- Config for: fzf-lua
-time([[Config for fzf-lua]], true)
-require("IndY.plugin-configs.fzf-lua")
-time([[Config for fzf-lua]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require("IndY.plugin-configs.nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
 -- Config for: gitsigns.nvim
 time([[Config for gitsigns.nvim]], true)
 require("IndY.plugin-configs.gitsigns")
 time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-web-devicons
-time([[Config for nvim-web-devicons]], true)
-require("IndY.plugin-configs.nvim-web-devicons")
-time([[Config for nvim-web-devicons]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[au CmdUndefined lua _Deno_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
 pcall(vim.cmd, [[au CmdUndefined lua _Node_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
+pcall(vim.cmd, [[au CmdUndefined lua _Deno_Toggle() ++once lua require"packer.load"({'toggleterm.nvim'}, {}, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file FzfLua lua require("packer.load")({'fzf-lua'}, { cmd = "FzfLua", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeClose lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeClose", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
@@ -289,9 +321,14 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType norg ++once lua require("packer.load")({'neorg'}, { ft = "norg" }, _G.packer_plugins)]]
 vim.cmd [[au FileType lua ++once lua require("packer.load")({'cmp-nvim-lua'}, { ft = "lua" }, _G.packer_plugins)]]
+vim.cmd [[au FileType norg ++once lua require("packer.load")({'neorg'}, { ft = "norg" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
+  -- Event lazy-loads
+time([[Defining lazy-load event autocommands]], true)
+vim.cmd [[au BufEnter * ++once lua require("packer.load")({'indent-blankline.nvim', 'bufferline.nvim', 'nvim-treesitter'}, { event = "BufEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'LuaSnip', 'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 vim.cmd [[augroup filetypedetect]]
 time([[Sourcing ftdetect script at: /home/mauray/.local/share/nvim/site/pack/packer/opt/neorg/ftdetect/norg.vim]], true)

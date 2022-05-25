@@ -45,25 +45,41 @@ return packer.startup({
 			'L3MON4D3/LuaSnip',
 			requires = {
 				'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
-				'rafamadriz/friendly-snippets' -- More Snippets
+				{ -- More Snippets
+					'rafamadriz/friendly-snippets',
+					after = "LuaSnip"
+				}
 			},
+			event = "InsertEnter",
+			module = "luasnip",
 			config = [[require("IndY.plugin-configs.lsp.luasnip")]]
 		}
 		use { -- Syntax Highlighting and parsers
 			'nvim-treesitter/nvim-treesitter',
 			requires = {
-				'nvim-treesitter/nvim-treesitter-textobjects', -- Provides textobjects like af, if, ic, ac
+				{ -- Provides textobjects like af, if, ic, ac
+					'nvim-treesitter/nvim-treesitter-textobjects',
+					after = "nvim-treesitter"
+				},
 			},
 			run = ':TSUpdate',
+			event = "BufEnter",
 			config = [[require("IndY.plugin-configs.treesitter")]]
 		}
 		use { -- Comment or Uncomment Lines
 			'numToStr/Comment.nvim',
-			requires = 'JoosepAlviste/nvim-ts-context-commentstring', -- Smarter Commenting
+			requires = {
+				{
+					'JoosepAlviste/nvim-ts-context-commentstring',
+					after = "nvim-treesitter",
+				},
+			}, -- Smarter Commenting
 			config = [[require("IndY.plugin-configs.comment")]]
 		}
 		use { -- Automatically makes pairs of (), [], etc.
 			'windwp/nvim-autopairs',
+			event = "InsertEnter",
+			after = "nvim-cmp",
 			config = [[require("IndY.plugin-configs.nvim-autopairs")]]
 		}
 		use { -- Deal with surroundings
@@ -76,25 +92,30 @@ return packer.startup({
 		}
 		use { -- Indent Guides
 			'lukas-reineke/indent-blankline.nvim',
+			event = "BufEnter",
 			config = [[require("IndY.plugin-configs.indent_blankline")]]
 		}
 		use { -- File Explorer
 			'kyazdani42/nvim-tree.lua',
 			requires = 'kyazdani42/nvim-web-devicons', -- Various Icons
+			cmd = {"NvimTreeToggle", "NvimTreeClose"},
 			config = [[require("IndY.plugin-configs.nvim-tree")]]
 		}
-		use { -- Fuzzy Finder
-			'nvim-telescope/telescope.nvim',
-			requires = 'nvim-lua/plenary.nvim',
-		}
+		-- use { -- Fuzzy Finder
+		-- 	'nvim-telescope/telescope.nvim',
+		-- 	requires = 'nvim-lua/plenary.nvim',
+		-- }
 		use { -- Fuzzy Finder 2
 			'ibhagwan/fzf-lua',
 			requires = 'kyazdani42/nvim-web-devicons',
+			cmd = "FzfLua",
+			module = "fzf-lua",
 			config = [[require("IndY.plugin-configs.fzf-lua")]]
 		}
 		use { -- Shows the open buffers in a bufferline
 			'akinsho/bufferline.nvim',
 			requires = 'kyazdani42/nvim-web-devicons', -- Various Icons
+			event = "BufEnter",
 			config = [[require("IndY.plugin-configs.bufferline")]]
 		}
 		use { -- A wrapper around the terminal functionality of neovim

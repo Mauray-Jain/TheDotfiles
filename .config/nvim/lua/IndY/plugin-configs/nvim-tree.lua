@@ -1,13 +1,4 @@
--- Icon for JSONC
--- require("nvim-web-devicons").set_icon {
--- 	jsonc = {
--- 		icons = "",
---     color = "#cbcb41",
---     cterm_color = "185",
---     name = "Jsonc",
--- 	}
--- }
--- Nvim Tree Setup
+-- Setup
 require("nvim-tree").setup {
 	auto_reload_on_write = true,
 	disable_netrw = true,
