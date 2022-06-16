@@ -21,6 +21,7 @@ alias zshrc="nvim ~/.zshrc"
 alias nvim-conf="cd ~/.config/nvim && nvim"
 alias learn-programming="cd ~/repo/Learning-Programming/ && nvim"
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias l="ls -lah --color=auto"
 
 # ZSH Syntax Highlighting (installed via pacman)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
